@@ -1,0 +1,9 @@
+# Ключи и секреты — не публиковать
+_secrets.py
+.env
+.env.local
+*.env
+!.env.example
+
+# Сгенерированные промпты (локально)
+generated_prompts/

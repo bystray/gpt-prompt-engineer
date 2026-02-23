@@ -1,140 +1,115 @@
 # gpt-prompt-engineer
 [![Twitter Follow](https://img.shields.io/twitter/follow/mattshumer_?style=social)](https://twitter.com/mattshumer_) [![Open Main Version In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mshumer/gpt-prompt-engineer/blob/main/gpt_prompt_engineer.ipynb) [![Open Classification Version In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16NLMjqyuUWxcokE_NF6RwHD8grwEeoaJ?usp=sharing)
 
-[Be the first to know when I publish new AI builds + demos!](https://tally.so/r/w2M17p)
+[Узнавайте первыми о новых AI-сборках и демо!](https://tally.so/r/w2M17p)
 
-## Overview
+## Обзор
 
-Prompt engineering is kind of like alchemy. There's no clear way to predict what will work best. It's all about experimenting until you find the right prompt. `gpt-prompt-engineer` is a tool that takes this experimentation to a whole new level.
+Инженерия промптов похожа на алхимию: заранее не угадаешь, что сработает лучше. Нужно экспериментировать, пока не найдёшь подходящий промпт. `gpt-prompt-engineer` выносит эти эксперименты на новый уровень.
 
-**Simply input a description of your task and some test cases, and the system will generate, test, and rank a multitude of prompts to find the ones that perform the best.**
+**Достаточно задать описание задачи и тестовые случаи — система сгенерирует множество промптов, проверит их и отсортирует по рейтингу, чтобы выделить самые эффективные.**
 
-## *New 3/20/24: The Claude 3 Opus Version*
-I've added a new version of gpt-prompt-engineer that takes full advantage of Anthropic's Claude 3 Opus model. This version auto-generates test cases and allows for the user to define multiple input variables, making it even more powerful and flexible. Try it out with the claude-prompt-engineer.ipynb notebook in the repo!
+## *Обновление 20.03.24: версия для Claude 3 Opus*
+Добавлена версия gpt-prompt-engineer под Anthropic Claude 3 Opus. В ней тестовые случаи генерируются автоматически, а пользователь может задать несколько входных переменных — это делает инструмент мощнее и гибче. Запускайте ноутбук `claude-prompt-engineer.ipynb` из репозитория.
 
-## *New 3/20/24: Claude 3 Opus -> Haiku Conversion Version*
-This notebook enables you to build lightning-fast, performant AI systems at a fraction of the typical cost. By using Claude 3 Opus to establish the latent space and Claude 3 Haiku for the actual generation, you can achieve amazing results. The process works by leveraging Opus to produce a collection of top-notch examples, which are then used to guide Haiku in generating output of comparable quality while dramatically reducing both latency and cost per generation. Try it out with the opus-to-haiku-conversion.ipynb notebook in the repo!
+## *Обновление 20.03.24: конвертация Claude 3 Opus → Haiku*
+Ноутбук позволяет собирать быстрые и эффективные AI-системы при заметно меньших затратах. Opus задаёт «пространство» качества, а Haiku используется для генерации: Opus создаёт набор эталонных примеров, по которым Haiku выдаёт результат сопоставимого качества при существенно меньшей задержке и стоимости. Запускайте `opus-to-haiku-conversion.ipynb`.
 
-## Features
+## Возможности
 
-- **Prompt Generation**: Using GPT-4, GPT-3.5-Turbo, or Claude 3 Opus, `gpt-prompt-engineer` can generate a variety of possible prompts based on a provided use-case and test cases.
+- **Генерация промптов**: с помощью GPT-4, GPT-3.5-Turbo или Claude 3 Opus генерируются варианты промптов по заданному сценарию и тестовым случаям.
 
-- **Prompt Testing**: The real magic happens after the generation. The system tests each prompt against all the test cases, comparing their performance and ranking them using an ELO rating system.
+- **Проверка промптов**: каждый вариант проверяется на всех тестовых случаях, результаты сравниваются и ранжируются по системе ELO.
 <img width="1563" alt="Screen Shot 2023-07-04 at 11 41 54 AM" src="https://github.com/mshumer/gpt-prompt-engineer/assets/41550495/f8171cff-1703-40ca-b9fd-f0aa24d07110">
 
-- **ELO Rating System**: Each prompt starts with an ELO rating of 1200. As they compete against each other in generating responses to the test cases, their ELO ratings change based on their performance. This way, you can easily see which prompts are the most effective.
+- **Рейтинг ELO**: у каждого промпта стартовый рейтинг 1200. В «турнире» по ответам на тестовые случаи рейтинги обновляются в зависимости от качества. Так видно, какие промпты работают лучше всего.
 
-- **Classification Version**: The `gpt-prompt-engineer -- Classification Version` notebook is designed to handle classification tasks. It evaluates the correctness of a test case by matching it to the expected output ('true' or 'false') and provides a table with scores for each prompt.
+- **Версия для классификации**: ноутбук `gpt-prompt-engineer -- Classification Version` заточен под задачи классификации. Корректность проверяется по соответствию ожидаемому ответу ('true' или 'false'), в итоге выводится таблица с оценками по каждому промпту.
 <img width="1607" alt="Screen Shot 2023-07-10 at 5 22 24 PM" src="https://github.com/mshumer/gpt-prompt-engineer/assets/41550495/d5c9f2a8-97fa-445d-9c38-dec744f77854">
 
-- **Claude 3 Version**: The claude-prompt-engineer notebook is designed to work with Anthropic's Claude 3 Opus model. It auto-generates test cases and allows for multiple input variables, making it even more powerful and flexible.
+- **Версия Claude 3**: ноутбук claude-prompt-engineer работает с Claude 3 Opus, сам генерирует тестовые случаи и поддерживает несколько входных переменных.
 
-- **Claude 3 Opus -> Haiku Conversion Version**: Designed to preserve Opus' quality for your use-case while getting the speed + cost benefits of using Haiku.
+- **Конвертация Opus → Haiku**: сохраняет качество Opus для вашего сценария при скорости и стоимости Haiku.
 
-- **[Weights & Biases](https://wandb.ai/site/prompts) Logging**: Optional logging to [Weights & Biases](https://wandb.ai/site) of your configs such as temperature and max tokens, the system and user prompts for each part, the test cases used and the final ranked ELO rating for each candidate prompt. Set `use_wandb` to `True` to use. 
+- **Логирование в [Weights & Biases](https://wandb.ai/site/prompts)**: по желанию можно логировать конфиг (temperature, max tokens), системные и пользовательские промпты, тестовые случаи и итоговый ELO по каждому кандидату. Включите: `use_wandb = True`.
 
-- **[Portkey](https://portkey.ai)**: Optional tool to log and trace all the prompt chains and their responses. Set `use_portkey` to `True` to use.
+- **[Portkey](https://portkey.ai)**: опциональное логирование и трассировка цепочек промптов и ответов. Включите: `use_portkey = True`.
 
-## Setup
-1. [Open the notebook in Google Colab](https://colab.research.google.com/github/mshumer/gpt-prompt-engineer/blob/main/gpt_prompt_engineer.ipynb) or in a local Jupyter notebook. For classification, use [this one.](https://colab.research.google.com/drive/16NLMjqyuUWxcokE_NF6RwHD8grwEeoaJ?usp=sharing). For the Claude 3 version, use [this one.](https://colab.research.google.com/drive/1likU_S4VfkzoLMPfVdMs3E54cn_W6I7o?usp=sharing)
+## Установка и настройка
 
-2. Add your OpenAI API key to the line `openai.api_key = "ADD YOUR KEY HERE"`. If you're using the Claude 3 version, add your Anthropic API key to the line `ANTHROPIC_API_KEY = "ADD YOUR KEY HERE"`.
+1. Откройте ноутбук в [Google Colab](https://colab.research.google.com/github/mshumer/gpt-prompt-engineer/blob/main/gpt_prompt_engineer.ipynb) или в локальном Jupyter. Для классификации — [этот](https://colab.research.google.com/drive/16NLMjqyuUWxcokE_NF6RwHD8grwEeoaJ?usp=sharing). Для Claude 3 — [этот](https://colab.research.google.com/drive/1likU_S4VfkzoLMPfVdMs3E54cn_W6I7o?usp=sharing).
 
-## How to Use
+2. Укажите OpenAI API ключ: создайте файл `_secrets.py` из `_secrets.example.py` и пропишите в нём `OPENAI_API_KEY`. В версии для Claude 3 укажите ключ Anthropic в переменной `ANTHROPIC_API_KEY`.
 
-1. If you are using the GPT-4 version, define your use-case and test cases. The use-case is a description of what you want the AI to do. Test cases are specific prompts that you would like the AI to respond to. For example:
+## Как пользоваться
+
+1. Для версии на GPT-4 задайте сценарий использования и тестовые случаи. Сценарий — это описание того, что должна делать модель. Тестовые случаи — конкретные запросы, на которые она будет отвечать. Пример:
 
 ```
-description = "Given a prompt, generate a landing page headline." # this style of description tends to work well
+description = "По запросу сгенерировать заголовок для лендинга." # такое описание обычно даёт хороший результат
 
 test_cases = [
-    {
-        'prompt': 'Promoting an innovative new fitness app, Smartly',
-    },
-    {
-        'prompt': 'Why a vegan diet is beneficial for your health',
-    },
-    {
-        'prompt': 'Introducing a new online course on digital marketing',
-    },
-    {
-        'prompt': 'Launching a new line of eco-friendly clothing',
-    },
-    {
-        'prompt': 'Promoting a new travel blog focusing on budget travel',
-    },
-    {
-        'prompt': 'Advertising a new software for efficient project management',
-    },
-    {
-        'prompt': 'Introducing a new book on mastering Python programming',
-    },
-    {
-        'prompt': 'Promoting a new online platform for learning languages',
-    },
-    {
-        'prompt': 'Advertising a new service for personalized meal plans',
-    },
-    {
-        'prompt': 'Launching a new app for mental health and mindfulness',
-    }
+    {'prompt': 'Продвижение нового фитнес-приложения Smartly'},
+    {'prompt': 'Почему веганская диета полезна для здоровья'},
+    {'prompt': 'Запуск онлайн-курса по цифровому маркетингу'},
+    {'prompt': 'Запуск линейки экологичной одежды'},
+    {'prompt': 'Продвижение блога о бюджетных путешествиях'},
+    {'prompt': 'Реклама ПО для управления проектами'},
+    {'prompt': 'Презентация книги по изучению Python'},
+    {'prompt': 'Продвижение платформы для изучения языков'},
+    {'prompt': 'Реклама сервиса персональных планов питания'},
+    {'prompt': 'Запуск приложения для ментального здоровья и медитации'},
 ]
 ```
 
-For the classification version, your test cases should be in the format:
+Для версии классификации тестовые случаи задаются в формате:
 
 ```
 test_cases = [
-    {
-        'prompt': 'I had a great day!',
-        'output': 'true'
-    },
-    {
-        'prompt': 'I am feeling gloomy.',
-        'output': 'false'
-    },
-    // add more test cases here
+    {'prompt': 'У меня был отличный день!', 'output': 'true'},
+    {'prompt': 'Мне грустно.', 'output': 'false'},
+    # добавьте свои тестовые случаи
 ]
 ```
 
-For the Claude 3 version, you can define input variables in addition to the use-case description:
+Для версии Claude 3 можно задать входные переменные помимо описания сценария:
 
 ```
-description = "Given a prompt, generate a personalized email response."
+description = "По запросу сгенерировать персональный ответ на email."
 
 input_variables = [
-    {"variable": "SENDER_NAME", "description": "The name of the person who sent the email."},
-    {"variable": "RECIPIENT_NAME", "description": "The name of the person receiving the email."},
-    {"variable": "TOPIC", "description": "The main topic or subject of the email. One to two sentences."}
+    {"variable": "SENDER_NAME", "description": "Имя отправителя письма."},
+    {"variable": "RECIPIENT_NAME", "description": "Имя получателя."},
+    {"variable": "TOPIC", "description": "Тема или суть письма. Одно-два предложения."}
 ]
 ```
 
-The test cases will be auto-generated based on the use-case description and input variables.
+Тестовые случаи будут сгенерированы автоматически по описанию и переменным.
 
-3. Choose how many prompts to generate. Keep in mind, this can get expensive if you generate many prompts. 10 is a good starting point.
+3. Выберите, сколько вариантов промптов генерировать. Учтите, что при большом числе запросов затраты растут. Разумный старт — 10.
 
-4. Call `generate_optimal_prompt(description, test_cases, number_of_prompts)` to generate a list of potential prompts, and test and rate their performance. For the classification version, just run the last cell. For the Claude 3 version, call `generate_optimal_prompt(description, input_variables, num_test_cases, number_of_prompts, use_wandb)`.
+4. Вызовите `generate_optimal_prompt(description, test_cases, number_of_prompts)` — будет сгенерирован список промптов и оценена их эффективность. В версии классификации достаточно выполнить последнюю ячейку. В версии Claude 3: `generate_optimal_prompt(description, input_variables, num_test_cases, number_of_prompts, use_wandb)`.
 
-5. The final ELO ratings will be printed in a table, sorted in descending order. The higher the rating, the better the prompt.
+5. Итоговые рейтинги ELO выводятся в таблице по убыванию: чем выше рейтинг, тем лучше промпт.
 <img width="1074" alt="Screen Shot 2023-07-04 at 11 48 45 AM" src="https://github.com/mshumer/gpt-prompt-engineer/assets/41550495/324f90b8-c0ee-45fd-b219-6c44d9aa281b">
 
-For the classification version, the scores for each prompt will be printed in a table (see the image above).
+В версии классификации для каждого промпта выводятся оценки в таблице (как на изображении выше).
 
-## Contributions are welcome! Some ideas:
-- have a number of different system prompt generators that create different styles of prompts, to cover more ground (ex. examples, verbose, short, markdown, etc.)
-- automatically generate the test cases
-- expand the classification version to support more than two classes using tiktoken
+## Приветствуются контрибуции. Идеи:
+- несколько генераторов системных промптов в разных стилях (с примерами, краткие, развёрнутые, markdown и т.д.);
+- автоматическая генерация тестовых случаев;
+- расширение версии классификации на более чем два класса (например, с tiktoken).
 
-## License
+## Лицензия
 
-This project is [MIT](https://github.com/your_username/your_repository/blob/master/LICENSE) licensed.
+Проект распространяется под лицензией [MIT](https://github.com/your_username/your_repository/blob/master/LICENSE).
 
-## Contact
+## Контакты
 
-Matt Shumer - [@mattshumer_](https://twitter.com/mattshumer_)
+Matt Shumer — [@mattshumer_](https://twitter.com/mattshumer_)
 
-Project Link: [https://github.com/mshumer/gpt-prompt-engineer](url)
+Ссылка на проект: [https://github.com/mshumer/gpt-prompt-engineer](url)
 
-Lastly, if you want to try something even cooler than this, sign up for [HyperWrite Personal Assistant](https://app.hyperwriteai.com/personalassistant) (most of my time is spent on this). It's basically an AI with access to real-time information that a) is incredible at writing naturally, and b) can operate your web browser to complete tasks for you.
+Если интересны ещё более продвинутые инструменты — загляните в [HyperWrite Personal Assistant](https://app.hyperwriteai.com/personalassistant): ИИ с доступом к актуальной информации, который умеет писать естественно и управлять браузером для выполнения задач.
 
-Head to [ShumerPrompt](https://ShumerPrompt.com), my "Github for Prompts"!
+А также [ShumerPrompt](https://ShumerPrompt.com) — «Github для промптов».
