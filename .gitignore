@@ -1,5 +1,7 @@
 # Ключи и секреты — не публиковать
 _secrets.py
+__pycache__/
+*.pyc
 .env
 .env.local
 *.env
