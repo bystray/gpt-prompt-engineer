@@ -138,3 +138,46 @@ Project Link: [https://github.com/mshumer/gpt-prompt-engineer](url)
 Lastly, if you want to try something even cooler than this, sign up for [HyperWrite Personal Assistant](https://app.hyperwriteai.com/personalassistant) (most of my time is spent on this). It's basically an AI with access to real-time information that a) is incredible at writing naturally, and b) can operate your web browser to complete tasks for you.
 
 Head to [ShumerPrompt](https://ShumerPrompt.com), my "Github for Prompts"!
+
+---
+
+## PromptOps Desktop MVP (личное desktop-приложение)
+
+Добавлен MVP для хранения и тестирования промптов:
+
+- Electron + React (desktop UI).
+- Node.js API (Express) для CRUD промптов.
+- Supabase-ready слой хранения (или локальный in-memory режим без ключей).
+- История версий промптов.
+- Теги, примеры входа/выхода и параметры модели.
+- Визуализация pipeline выбора модели.
+- Рекомендация модели на основе весов: цена, latency, качество, контекстное окно, мультимодальность.
+- Заготовка A/B теста между двумя промптами и моделями OpenAI.
+
+### Быстрый старт
+
+```bash
+npm install
+npm run dev
+```
+
+Приложение запускает:
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:8787`
+- Electron-окно поверх frontend.
+
+### Переменные окружения (для Supabase)
+
+```bash
+export SUPABASE_URL="https://<project-ref>.supabase.co"
+export SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
+```
+
+Если переменные не заданы, API работает в локальном режиме (in-memory).
+
+### Supabase
+
+- SQL схема: `app/supabase/schema.sql`
+- Edge Function рекомендации модели: `app/supabase/functions/recommend-model/index.ts`
+
+> Решение по offline-режиму: в MVP оставлен локальный in-memory fallback, чтобы приложение работало без сети и ключей на этапе прототипа.

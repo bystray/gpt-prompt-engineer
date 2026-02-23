@@ -1,0 +1,31 @@
+{
+  "name": "prompt-ops-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "main": "app/electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:web\" \"npm:dev:electron\"",
+    "dev:web": "vite --config app/vite.config.js",
+    "dev:server": "node --watch app/server/index.js",
+    "dev:electron": "wait-on tcp:5173 && electron .",
+    "build:web": "vite build --config app/vite.config.js",
+    "lint": "eslint app --ext .js,.jsx"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^32.3.1",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react": "^7.37.4",
+    "vite": "^6.2.0",
+    "wait-on": "^8.0.2"
+  },
+  "type": "module"
+}
