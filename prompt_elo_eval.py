@@ -393,7 +393,7 @@ if __name__ == "__main__":
         "Когда Цена овощного полуфабриката выше чем цена сырого в сезон, а когда ниже"
     ]
 
-    N = 6  # количество кандидатов
+    N = 4 # количество кандидатов
     prompts = generate_candidate_prompts(description, test_cases, n=N)
 
     result = run_elo_eval(description, test_cases, prompts, rounds=10, pairs_per_round=6, seed=42)
